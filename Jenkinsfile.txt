@@ -1,14 +1,16 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/Nivethitha-24/DEVOPS_PROJ.git'
+                git credentialsId: 'github-token', url: 'https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git'
             }
         }
-        stage('Deploy') {
+
+        stage('Deploy to Local Web Server') {
             steps {
-                sh 'cp -r * /var/www/html/'
+                sh 'sudo cp -r * /var/www/html/'
             }
         }
     }
